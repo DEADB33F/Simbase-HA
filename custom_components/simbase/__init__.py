@@ -34,7 +34,6 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     client = SimbaseClient(session, api_key)
     webhook_id = f"simbase_{entry.entry_id}"
 
-    # 1. Coordinator for SIMs (Frequent updates: Status, Usage, SMS)
     usage_interval = entry.options.get(CONF_USAGE_INTERVAL, DEFAULT_USAGE_INTERVAL)
     sim_coordinator = DataUpdateCoordinator(
         hass,
@@ -53,7 +52,6 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     )
     _LOGGER.info("Simbase Webhook registered: /api/webhook/%s", webhook_id)
 
-    # 2. Coordinator for Account Balance (Infrequent updates)
     balance_interval = entry.options.get(CONF_BALANCE_INTERVAL, DEFAULT_BALANCE_INTERVAL)
     balance_coordinator = DataUpdateCoordinator(
         hass,
@@ -129,22 +127,18 @@ async def handle_webhook(hass, webhook_id, request):
         _LOGGER.error("Invalid JSON received on Simbase webhook")
         return None
 
-    # Simbase format: {"event": "sms", "iccid": "...", "message": "...", ...}
-    if data.get("event") == "sms":
+        if data.get("event") == "sms":
         iccid = data.get("iccid")
         message = data.get("message")
         
         _LOGGER.info("SMS Received for %s: %s", iccid, message)
 
-        # 1. Fire a Home Assistant Event (Great for Automations!)
         hass.bus.async_fire("simbase_sms_received", {
             "iccid": iccid,
             "message": message,
             "device_name": data.get("deviceName")
         })
 
-        # 2. (Optional) Update the "Last SMS" sensor immediately
-        # We find the coordinator and push the data into it
         for entry_id in hass.data[DOMAIN]:
             coordinator = hass.data[DOMAIN][entry_id].get("sim_coordinator")
             if coordinator and iccid in coordinator.data:
