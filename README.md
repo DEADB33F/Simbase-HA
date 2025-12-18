@@ -3,7 +3,7 @@
 This integration allows you to monitor and manage multiple Simbase IOT SIM cards & eSIMs using Home Assistant.
 
 
-## Completed/Planned features / roadmap 🗺️
+## Completed/Planned features 🛠️
 
 - [x] View main account Balance
 - [x] View ongoing monthly data usage per SIM
@@ -20,9 +20,11 @@ This integration allows you to monitor and manage multiple Simbase IOT SIM cards
 
 [![Open your Home Assistant instance and open a repository inside the Home Assistant Community Store.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=DEADB33F&repository=Simbase-HA&category=Integration)
 
-⚠️ **This integration is still a work in progress** ⚠️  
+⚠️ **This integration is still very much a work in progress** ⚠️  
+
+---
 
 If you come across any bugs, issues or "undocumented features", please open an issue on the GitHub repository.
 
 
-TODO: Finish README
+TODO: ...Finish README
