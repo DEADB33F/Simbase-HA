@@ -9,7 +9,6 @@ class SimbaseConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
     async def async_step_user(self, user_input=None):
         errors = {}
         if user_input is not None:
-            # Validate API key here if needed (e.g., make a test call)
             return self.async_create_entry(title="Simbase Account", data=user_input)
 
         schema = vol.Schema({
