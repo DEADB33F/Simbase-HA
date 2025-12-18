@@ -1,0 +1,19 @@
+send_sms:
+  name: Send Simbase SMS
+  description: Send a custom SMS message to a Simbase SIM.
+  fields:
+    target_sim:
+      name: SIM Card
+      description: Choose the SIM card you want to message.
+      required: true
+      selector:
+        device:
+          integration: simbase
+    message:
+      name: Message
+      description: The text message to send.
+      required: true
+      example: "Hello from Home Assistant!"
+      selector:
+        text:
+          multiline: true

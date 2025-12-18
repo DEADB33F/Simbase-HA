@@ -1,0 +1,11 @@
+{
+    "domain": "simbase",
+    "name": "Simbase",
+    "codeowners": ["DEADBEEF"],
+    "documentation": "https://developer.simbase.com/",
+    "issue_tracker": "https://github.com/DEADB33F/Simbase-HA/issues",
+    "version": "1.0.0",
+    "requirements": [],
+    "iot_class": "cloud_polling",
+    "config_flow": true
+}
